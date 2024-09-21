@@ -2,12 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap");
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --brand-color: #1d2026;
+  --active-bar-color: #FF7E1B;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
@@ -17,7 +21,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
 }
 
 @layer utilities {

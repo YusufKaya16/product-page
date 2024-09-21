@@ -1,0 +1,49 @@
+@import "../app/globals.css";
+
+.navbar-container {
+  height: 50px;
+  position: relative;
+}
+
+.navbar-brand {
+  color: var(--brand-color);
+}
+
+.cart {
+  position: absolute;
+  border: 2px solid black;
+  width: 360px;
+  height: 256px;
+  top: 60px;
+  right: -60px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.cart-header {
+  height: 67px;
+  width: 100%;
+}
+
+.active-bar {
+  position: absolute;
+  height: 3px;
+  background: var(--active-bar-color);
+  bottom: -45px;
+  transition: left ease 200ms;
+}
+
+.active-thumbnail {
+  opacity: 0.5;
+  border: 2px solid var(--active-bar-color);
+}
+
+.count-container {
+  width: 157px;
+  height: 56px;
+}
+
+.addToCartBtn {
+  width: 272px;
+  height: 56px;
+}
