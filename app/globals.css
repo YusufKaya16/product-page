@@ -9,6 +9,7 @@
   --foreground: #171717;
   --brand-color: #1d2026;
   --active-bar-color: #FF7E1B;
+  --btn-bg-color: #FF7E1B;
 }
 
 @media (prefers-color-scheme: light) {

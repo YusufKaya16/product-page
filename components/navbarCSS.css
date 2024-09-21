@@ -18,6 +18,7 @@
   right: -60px;
   background: #fff;
   border-radius: 10px;
+  z-index: 1;
 }
 
 .cart-header {
@@ -46,4 +47,38 @@
 .addToCartBtn {
   width: 272px;
   height: 56px;
+}
+
+.company-text {
+  color: #69707D;
+  font-size: 13px;
+  line-height: auto;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.product-title{
+    font-size: 2.75rem;
+    line-height: 4rem;
+    letter-spacing: 0px;
+    font-weight: bolder;
+}
+
+.info-text{
+    font-size: 1rem;
+    line-height: 26px;
+    letter-spacing: 0px;
+    text-align: start;
+    color: #69707D;
+}
+
+.price{
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.discountless{
+    font-size: 1rem;
+    line-height: 26px;
+    font-weight: bold;
 }
