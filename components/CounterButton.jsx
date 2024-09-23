@@ -3,7 +3,7 @@ export default function CounterButton({ state, handleClick }) {
   return (
     <button
       onClick={() => handleClick(state)}
-      className="basis-10 flex justify-center items-center"
+      className="flex justify-center items-center counter-btn"
     >
       <Image
         src={`/images/icon-${state === "plus" ? "plus" : "minus"}.svg`}

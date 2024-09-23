@@ -6,7 +6,7 @@ export default function ProductImage({ url }) {
       width={445}
       height={445}
       alt="product-image"
-      className="rounded-2xl cursor-pointer"
+      className="product-image rounded-2xl cursor-pointer"
     />
   );
 }

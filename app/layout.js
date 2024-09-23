@@ -22,9 +22,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased p-8 flex justify-center`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
-        <main style={{ width: "1110px", height: "fit-content"}}>{children}</main>
+        <main>{children}</main>
       </body>
     </html>
   );

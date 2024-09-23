@@ -1,0 +1,7 @@
+Missions
+1- Make responsive design to the Navbar
+2- Add the delete property to the products in the basket.
+3- Add active class to the thumbnails when you click on the them.
+4- Change the product image when you click on the thumbnail photos.
+5- Add LightBox for the product image.
+6- Add responsive feature the product imagebox.
