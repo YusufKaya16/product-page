@@ -1,5 +1,5 @@
 "use client";
-import "../components/navbarCSS.css";
+import "../components/mainCSS.css";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";

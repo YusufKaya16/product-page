@@ -1,4 +1,6 @@
 import { toast } from "react-toastify";
+import "react-toastify/ReactToastify.css";
+
 
 class ToastMessage {
   constructor() {

@@ -6,12 +6,17 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import CounterButton from "./CounterButton";
 import ProductItem from "./ProductItem";
-import Cart from "./Cart";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/ReactToastify.css";
 
 import { ToastMessage, sendMessage } from "@/helpers/ToastMessage";
-import Sidebar from "./Sidebar";
+import LightBox from "./LightBox";
+import ThumbnailList from "./ThumbnailList";
+
+const images = [
+  "image-product-1.jpg",
+  "image-product-2.jpg",
+  "image-product-3.jpg",
+  "image-product-4.jpg",
+];
 
 const thumbnailUrls = [
   "image-product-1-thumbnail.jpg",
@@ -21,16 +26,25 @@ const thumbnailUrls = [
 ];
 
 export default function ProductCard() {
-  // the active represents the active thumbnail
-  const [active, setActive] = useState(null);
-  const thumbnailRefs = useRef([]);
-
   // the count is amount number.
   const [count, setCount] = useState(0);
-
   // product list in the basket.
   const [productList, setProductList] = useState([]);
+  // thumbnail
+  const thumbnailRefs = useRef([]);
+  const [activeThumb, setActiveThumb] = useState(0);
+  // product image
+  const [image, setImage] = useState(images[activeThumb]);
+  // lightbox
+  const [lightBox, setLightBox] = useState(false);
 
+  const addToRefArray = (el) => {
+    if (el && !thumbnailRefs.current.includes(el)) {
+      thumbnailRefs.current.push(el);
+    }
+  };
+
+  // counter button handle
   const handleClick = (state) => {
     if (state === "plus") {
       setCount((oldCount) => oldCount + 1);
@@ -40,10 +54,10 @@ export default function ProductCard() {
     }
   };
 
+  // add product to the cart or basket
   const addToCart = () => {
-    if (count === 0) {
-      return sendMessage("Ürün adeti Giriniz", "warn");
-    }
+    if (count === 0) return sendMessage("Ürün adeti Giriniz", "warn");
+
     for (let i = 0; i < count; ++i) {
       setProductList((oldList) => {
         return [...oldList, <ProductItem />];
@@ -51,10 +65,39 @@ export default function ProductCard() {
     }
   };
 
-  const updateActive = (index) => {};
+  // change product image
+  useEffect(() => {
+    const updateImage = () => {
+      if (thumbnailRefs.current[activeThumb]) {
+        console.log(thumbnailRefs.current[activeThumb]);
+        setImage(images[activeThumb]);
+      }
+    };
+
+    updateImage();
+  }, [activeThumb]);
+
+  // change image with button on the mobile design
+  const changeImage = (e) => {
+    const { ariaLabel } = e.target;
+    if (ariaLabel === "previous" && activeThumb > 0) {
+      setActiveThumb((oldIndex) => oldIndex - 1);
+    }
+    if (ariaLabel === "next" && activeThumb < images.length - 1) {
+      setActiveThumb((oldIndex) => oldIndex + 1);
+    }
+  };
+
+  const updateActive = (index) => {
+    setActiveThumb(index);
+  };
+
+  const openLightBox = () => {
+    setLightBox(!lightBox);
+  };
 
   return (
-    <section className="main-box mx-40">
+    <section className="main-box">
       {/* navbar start */}
       <Navbar productList={productList} />
       {/* navbar finish */}
@@ -66,20 +109,18 @@ export default function ProductCard() {
       <main className="product mt-20 mx-12">
         <div className="product-card sm:flex sm:flex-col sm:gap-24 lg:flex-row lg:gap-32">
           <div className="basis-1/2 flex flex-col sm:items-center md:items-center gap-8">
-            <ProductImage url="image-product-1.jpg" />
-            <ul className="thumbnail-list flex gap-8">
-              {thumbnailUrls.map((url, index) => (
-                <li key={index}>
-                  <Thumbnail
-                    index={index}
-                    url={`${url}`}
-                    activeClass={active}
-                    updateActive={updateActive}
-                    myRef={(el) => (thumbnailRefs.current[index] = el)}
-                  />
-                </li>
-              ))}
-            </ul>
+            <ProductImage
+              image={image}
+              changeImage={changeImage}
+              activeThumb={activeThumb}
+              images={images}
+              openLightBox={openLightBox}
+            />
+            <ThumbnailList
+              addToRefArray={addToRefArray}
+              thumbnailUrls={thumbnailUrls}
+              updateActive={updateActive}
+            />
           </div>
           <div className="product-info basis-1/2 flex justify-center items-center">
             <div>
@@ -136,6 +177,17 @@ export default function ProductCard() {
           </div>
         </div>
       </main>
+      <LightBox
+        image={image}
+        changeImage={changeImage}
+        activeThumb={activeThumb}
+        images={images}
+        updateActive={updateActive}
+        thumbnailUrls={thumbnailUrls}
+        addToRefArray={addToRefArray}
+        lightBox={lightBox}
+        openLightBox={openLightBox}
+      />
     </section>
   );
 }

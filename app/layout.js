@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
-        <main>{children}</main>
+        <main className="main-box mx-40 mb-10">{children}</main>
       </body>
     </html>
   );
